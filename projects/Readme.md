@@ -1,0 +1,1 @@
+This is a repository that contains multiple folders with different types of files. It is important to document what different folders in this project contain, and what the sub-projects are made up of.
