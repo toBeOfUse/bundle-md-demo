@@ -25,8 +25,9 @@ jobs:
           path: wiki
       - name: copy over files
         run: |
-          rm -rf wiki/bundle-md/
-          cp -r bundle-md/ wiki/
+          rm -rf wiki/images/
+          cp bundle-md/bundle.md wiki/Folder-Architecture.md
+          cp -r bundle-md/images/ wiki/
       - name: commit changes
         run: |
           cd wiki
