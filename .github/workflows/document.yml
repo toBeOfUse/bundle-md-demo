@@ -32,7 +32,9 @@ jobs:
       - name: commit changes
         run: |
           cd wiki
+          git config --global user.name bundle-md
+          git config --global user.email bundle-md@users.noreply.github.com
           git add Folder-Architecture.md
           git add auto_images/*
-          git commit -m "Update auto-generated folder architecture"
+          git commit -m "Update auto-generated folder architecture file"
           git push
