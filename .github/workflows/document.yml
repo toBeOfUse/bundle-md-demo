@@ -31,7 +31,8 @@ jobs:
           cp auto_md_bundle/images/* wiki/auto_images/
       - name: commit changes
         run: |
-          git add wiki/Folder-Architecture.md
+          cd wiki
+          git add Folder-Architecture.md
           git add auto_images/*
-          git commit -m "Update auto-generated folder arch"
+          git commit -m "Update auto-generated folder architecture"
           git push
