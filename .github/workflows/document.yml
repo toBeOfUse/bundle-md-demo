@@ -1,0 +1,36 @@
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  document:
+    name: Markdown Bundler
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v3
+        with:
+          path: main
+      - name: create markdown bundle
+        run: |
+          cd main
+          npx bundle-md projects --output auto_md_bundle
+          cd ../
+      - name: checkout wiki
+        uses: actions/checkout@v3
+        with:
+          repository: toBeOfUse/bundle-md-test.wiki
+          path: wiki
+      - name: copy over files
+        run: |
+          cp auto_md_bundle/bundle.md wiki/Folder-Architecture.md
+          rm -rf wiki/auto_images
+          mkdir wiki/auto_images
+          cp auto_md_bundle/images/* wiki/auto_images/
+      - name: commit changes
+        run: |
+          git add wiki/Folder-Architecture.md
+          git add auto_images/*
+          git commit -m "Update auto-generated folder arch"
+          git push
