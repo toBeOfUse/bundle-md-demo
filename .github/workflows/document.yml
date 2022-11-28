@@ -16,12 +16,12 @@ jobs:
       - name: create markdown bundle
         run: |
           cd main
-          npx bundle-md projects --output auto_md_bundle
+          npx bundle-md projects --output ../auto_md_bundle
           cd ../
       - name: checkout wiki
         uses: actions/checkout@v3
         with:
-          repository: toBeOfUse/bundle-md-test.wiki
+          repository: {{github.repository}}.wiki
           path: wiki
       - name: copy over files
         run: |
