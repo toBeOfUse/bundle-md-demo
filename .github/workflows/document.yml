@@ -16,7 +16,7 @@ jobs:
       - name: create markdown bundle
         run: |
           cd main
-          npx bundle-md projects --output ../auto_md_bundle
+          npx bundle-md projects --output ../bundle-md
           cd ../
       - name: checkout wiki
         uses: actions/checkout@v3
@@ -26,14 +26,12 @@ jobs:
       - name: copy over files
         run: |
           rm -rf wiki/bundle-md/
-          mkdir -p wiki/bundle-md/images
-          cp auto_md_bundle/bundle.md wiki/bundle/Folder-Architecture.md
-          cp auto_md_bundle/images/* wiki/bundle/images/
+          cp -r bundle-md/ wiki/
       - name: commit changes
         run: |
           cd wiki
           git config --global user.name bundle-md
           git config --global user.email bundle-md@users.noreply.github.com
-          git add bundle/*
+          git add bundle-md/*
           git commit -m "Update auto-generated folder architecture file"
           git push
